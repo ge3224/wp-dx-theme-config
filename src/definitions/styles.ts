@@ -131,7 +131,7 @@ export interface StyleBlocks {
   [key: string]: StyleBlock<string>;
 }
 
-export interface Styles {
+export type Styles = {
   blocks?: StyleBlocks;
   border?: StyleBorder;
   color?: StyleColor;
@@ -143,4 +143,4 @@ export interface Styles {
   shadow?: StyleValue;
   spacing?: StyleSpacing;
   typography?: StyleTypography;
-}
+};
