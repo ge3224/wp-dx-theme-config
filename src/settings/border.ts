@@ -1,4 +1,4 @@
-import { SettingBorder } from "~/src/definitions/settings.ts";
+import { SettingBorder } from "./definitions/settings.ts";
 
 function newSettingBorder(): SettingBorder {
   return {

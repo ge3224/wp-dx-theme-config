@@ -1,4 +1,4 @@
-import { SettingLayout } from "~/src/definitions/settings.ts";
+import { SettingLayout } from "./definitions/settings.ts";
 
 function newSettingLayout(): SettingLayout {
   return {

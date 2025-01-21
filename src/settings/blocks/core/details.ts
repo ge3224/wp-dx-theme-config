@@ -1,5 +1,5 @@
-import { SettingBlock } from "~/src/definitions/settings.ts";
-import newSettingTypography from "~/src/settings/typography.ts";
+import { SettingBlock } from "./definitions/settings.ts";
+import newSettingTypography from "./settings/typography.ts";
 
 function newSettingCoreDetails(): SettingBlock<"core/details"> {
   return {

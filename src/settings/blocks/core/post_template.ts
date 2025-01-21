@@ -1,4 +1,4 @@
-import { SettingBlock } from "~/src/definitions/settings.ts";
+import { SettingBlock } from "./definitions/settings.ts";
 
 function newSettingCorePostTemplate(): SettingBlock<"core/post-template"> {
   return {

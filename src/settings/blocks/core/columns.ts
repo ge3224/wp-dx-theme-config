@@ -1,4 +1,4 @@
-import { SettingBlock } from "~/src/definitions/settings.ts";
+import { SettingBlock } from "./definitions/settings.ts";
 
 export default function newSettingCoreColumns(): SettingBlock<"core/columns"> {
   return {

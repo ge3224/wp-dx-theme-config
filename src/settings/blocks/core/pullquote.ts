@@ -1,4 +1,4 @@
-import { SettingBlock } from "~/src/definitions/settings.ts";
+import { SettingBlock } from "./definitions/settings.ts";
 
 function newSettingCorePullquote(): SettingBlock<"core/pullquote"> {
   return {

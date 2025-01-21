@@ -1,11 +1,11 @@
-import { Settings } from "~/src/definitions/settings.ts";
-import newSettingBlocks from "~/src/settings/blocks/main.ts";
-import newSettingBorder from "~/src/settings/border.ts";
-import newSettingColor from "~/src/settings/color.ts";
-import newSettingCustom from "~/src/settings/custom/main.ts";
-import newSettingLayout from "~/src/settings/layout.ts";
-import newSettingSpacing from "~/src/settings/spacing.ts";
-import newSettingTypography from "~/src/settings/typography.ts";
+import { Settings } from "./definitions/settings.ts";
+import newSettingBlocks from "./settings/blocks/main.ts";
+import newSettingBorder from "./settings/border.ts";
+import newSettingColor from "./settings/color.ts";
+import newSettingCustom from "./settings/custom/main.ts";
+import newSettingLayout from "./settings/layout.ts";
+import newSettingSpacing from "./settings/spacing.ts";
+import newSettingTypography from "./settings/typography.ts";
 
 function newSettings(...mods: Array<(s: Settings) => void>): Settings {
   const s: Settings = {
