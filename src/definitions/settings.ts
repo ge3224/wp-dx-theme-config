@@ -200,9 +200,9 @@ export type SettingBlock<T extends string> = {
   [P in T]: SettingBlockShape;
 };
 
-export interface SettingBlocks {
+export type SettingBlocks = {
   [key: string]: SettingBlock<string>;
-}
+};
 
 export interface Settings {
   appearanceTools?: boolean;

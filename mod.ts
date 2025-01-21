@@ -10,6 +10,19 @@ export {
   withVersion,
 } from "./src/wp_theme_config.ts";
 
+export type { Settings } from "./src/definitions/settings.ts";
+export {
+  newSettings,
+  withAppearanceTools,
+  withSettingBlock,
+  withSettingBorder,
+  withSettingColor,
+  withSettingCustom,
+  withSettingLayout,
+  withSettingSpacing,
+  withSettingTypography,
+} from "./src/settings/main.ts";
+
 export type { Styles } from "./src/definitions/styles.ts";
 export {
   newStyles,
