@@ -1,5 +1,5 @@
 import { assert } from "@std/assert";
-import { newThemeJson } from "~/src/wp_theme_config.ts";
+import { newThemeJson } from "./wp_theme_config.ts";
 
 Deno.test("default construction", () => {
   const tests = [

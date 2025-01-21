@@ -1,14 +1,9 @@
-import newCustomTemplates from "~/src/custom_templates/main.ts";
-import newPatterns from "~/src/patterns/main.ts";
-import newSettings from "~/src/settings/main.ts";
-import newStyles from "~/src/styles/main.ts";
-import newTemplateParts from "~/src/template_parts/main.ts";
-import { CustomTemplates } from "~/src/definitions/custom_templates.ts";
-import { Patterns } from "~/src/definitions/patterns.ts";
-import { Settings } from "~/src/definitions/settings.ts";
-import { Styles } from "~/src/definitions/styles.ts";
-import { TemplateParts } from "~/src/definitions/template_parts.ts";
-import { ThemeJson } from "~/src/definitions/main.ts";
+import { CustomTemplates } from "./definitions/custom_templates.ts";
+import { Patterns } from "./definitions/patterns.ts";
+import { Settings } from "./definitions/settings.ts";
+import { Styles } from "./definitions/styles.ts";
+import { TemplateParts } from "./definitions/template_parts.ts";
+import { ThemeJson } from "./definitions/main.ts";
 
 export function withVersion(n: number): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
@@ -64,11 +59,11 @@ export function newThemeJson(
   const conf: ThemeJson = {
     version: 2,
     $schema: "https://schemas.wp.org/wp/6.5/theme.json",
-    settings: newSettings(),
-    styles: newStyles(),
-    customTemplates: newCustomTemplates(),
-    templateParts: newTemplateParts(),
-    patterns: newPatterns(),
+    settings: {},
+    styles: {},
+    customTemplates: [],
+    templateParts: [],
+    patterns: [],
   };
 
   mods.forEach((mod) => mod(conf));
