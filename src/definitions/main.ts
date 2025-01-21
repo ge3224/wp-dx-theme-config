@@ -1,10 +1,10 @@
-import { Settings } from "~/src/definitions/settings.ts";
-import { Styles } from "~/src/definitions/styles.ts";
-import { CustomTemplates } from "~/src/definitions/custom_templates.ts";
-import { TemplateParts } from "~/src/definitions/template_parts.ts";
-import { Patterns } from "~/src/definitions/patterns.ts";
+import { Settings } from "./settings.ts";
+import { Styles } from "./styles.ts";
+import { CustomTemplates } from "./custom_templates.ts";
+import { TemplateParts } from "./template_parts.ts";
+import { Patterns } from "./patterns.ts";
 
-export interface ThemeJson {
+export type ThemeJson = {
   $schema: string;
   version: number;
   settings: Settings;
@@ -12,4 +12,4 @@ export interface ThemeJson {
   customTemplates: CustomTemplates;
   templateParts: TemplateParts;
   patterns: Patterns;
-}
+};
