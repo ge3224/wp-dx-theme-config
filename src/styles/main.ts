@@ -1,5 +1,5 @@
 import {
-  StyleBlocks,
+  StyleBlock,
   StyleBorder,
   StyleColor,
   StyleDimension,
@@ -12,9 +12,20 @@ import {
   StyleValue,
 } from "../definitions/styles.ts";
 
-export function withStyleBlocks(sb: StyleBlocks): (s: Styles) => void {
+export function withStyleBlock<T extends string>(
+  key: string,
+  sb: StyleBlock<T>,
+): (s: Styles) => void {
   return (s: Styles): void => {
-    s.blocks = sb;
+    if (!s.blocks) {
+      s.blocks = {};
+    }
+
+    if (key in s.blocks) {
+      console.warn(`A style block with a key of "${key}" already exists`);
+    } else {
+      s.blocks[key] = sb;
+    }
   };
 }
 

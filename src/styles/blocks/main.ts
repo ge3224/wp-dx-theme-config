@@ -1,12 +1,10 @@
-import { StyleBlocks } from "../../definitions/styles.ts";
-import separator from "../../styles/blocks/core/separator.ts";
+import { StyleBlock } from "../../definitions/styles.ts";
+import { newStyleSeparator } from "./core/separator.ts";
 
-function newStyleBlocks(): StyleBlocks {
+export function newStyleBlocks(): StyleBlock {
   return {
     blocks: {
-      ...separator(),
+      ...newStyleSeparator(),
     },
   };
 }
-
-export default newStyleBlocks;

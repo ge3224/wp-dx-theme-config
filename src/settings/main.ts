@@ -26,7 +26,7 @@ export function withSettingBlock<T extends string>(
     }
 
     if (key in s.blocks) {
-      console.warn(`A setting block with a key of ${key} already exists`);
+      console.warn(`A setting block with a key of "${key}" already exists`);
     } else {
       s.blocks[key] = sb;
     }

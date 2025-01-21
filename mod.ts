@@ -27,7 +27,7 @@ export type { Styles } from "./src/definitions/styles.ts";
 export {
   newStyles,
   withCss,
-  withStyleBlocks,
+  withStyleBlock,
   withStyleBorder,
   withStyleColor,
   withStyleDimension,

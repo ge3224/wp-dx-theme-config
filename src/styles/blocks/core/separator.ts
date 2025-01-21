@@ -1,15 +1,20 @@
 import { StyleBlock } from "../../../definitions/styles.ts";
 
-function separator(): StyleBlock<"core/separator"> {
-  return {
-    "core/separator": {
-      border: {
-        top: {
-          width: "1px",
-        },
-      },
-    },
+// return {
+//   "core/separator": {
+//     border: {
+//       top: {
+//         width: "1px",
+//       },
+//     },
+//   },
+// };
+export function newStyleSeparator(
+  ...mods: Array<(s: StyleBlock<"core/separator">) => void>
+): StyleBlock<"core/separator"> {
+  const s: StyleBlock<"core/separator"> = {
+    "core/separator": {},
   };
+  mods.forEach((mod) => mod(s));
+  return s;
 }
-
-export default separator;
