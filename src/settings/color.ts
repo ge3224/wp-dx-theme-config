@@ -1,4 +1,4 @@
-import { SettingColor } from "./definitions/settings.ts";
+import { SettingColor } from "../definitions/settings.ts";
 
 function newSettingColor(): SettingColor {
   return {

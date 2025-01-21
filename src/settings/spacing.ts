@@ -1,4 +1,4 @@
-import { SettingSpacing } from "./definitions/settings.ts";
+import { SettingSpacing } from "../definitions/settings.ts";
 
 function newSettingSpacing(): SettingSpacing {
   return {

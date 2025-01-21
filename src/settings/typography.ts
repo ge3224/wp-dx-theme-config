@@ -1,4 +1,4 @@
-import { SettingTypography } from "./definitions/settings.ts";
+import { SettingTypography } from "../definitions/settings.ts";
 
 /**
  * @link https://tailwindcss.com/docs/font-size

@@ -1,4 +1,4 @@
-import { StyleBlock } from "./definitions/styles.ts";
+import { StyleBlock } from "../../../definitions/styles.ts";
 
 function separator(): StyleBlock<"core/separator"> {
   return {

@@ -1,4 +1,4 @@
-import { SettingBlock } from "./definitions/settings.ts";
+import { SettingBlock } from "../../../definitions/settings.ts";
 
 function newSettingCoreSeparator(): SettingBlock<"core/separator"> {
   return {
