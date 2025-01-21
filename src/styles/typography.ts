@@ -1,4 +1,4 @@
-import { StyleTypography } from "~/src/definitions/styles.ts";
+import { StyleTypography } from "./definitions/styles.ts";
 
 function newStyleTypography(): StyleTypography {
   return {

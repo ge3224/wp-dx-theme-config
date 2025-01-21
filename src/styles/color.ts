@@ -1,4 +1,4 @@
-import { StyleColor } from "~/src/definitions/styles.ts";
+import { StyleColor } from "./definitions/styles.ts";
 
 function newStyleColor(): StyleColor {
   return {

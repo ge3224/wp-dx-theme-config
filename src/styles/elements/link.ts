@@ -1,4 +1,4 @@
-import { StyleElementWithPseudoClass } from "~/src/definitions/styles.ts";
+import { StyleElementWithPseudoClass } from "./definitions/styles.ts";
 
 export default function newStyleLink(): StyleElementWithPseudoClass {
   return {

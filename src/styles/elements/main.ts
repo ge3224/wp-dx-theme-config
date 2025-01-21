@@ -1,7 +1,7 @@
-import { StyleElements } from "~/src/definitions/styles.ts";
-import newStyleButton from "~/src/styles/elements/button.ts";
-import newStyleH1 from "~/src/styles/elements/h1.ts";
-import newStyleLink from "~/src/styles/elements/link.ts";
+import { StyleElements } from "./definitions/styles.ts";
+import newStyleButton from "./styles/elements/button.ts";
+import newStyleH1 from "./styles/elements/h1.ts";
+import newStyleLink from "./styles/elements/link.ts";
 
 function newStyleElements(): StyleElements {
   return {
