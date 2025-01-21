@@ -3,6 +3,7 @@ import {
   StyleBorder,
   StyleColor,
   StyleDimension,
+  StyleElement,
   StyleElements,
   StyleFilter,
   StyleOutline,
@@ -50,6 +51,23 @@ export function withCss(css: string): (s: Styles) => void {
 export function withStyleDimension(sd: StyleDimension): (s: Styles) => void {
   return (s: Styles): void => {
     s.dimension = sd;
+  };
+}
+
+export function withStyleElement(
+  key: string,
+  se: StyleElement,
+): (s: Styles) => void {
+  return (s: Styles): void => {
+    if (!s.elements) {
+      s.elements = {};
+    }
+
+    if (key in s.elements) {
+      console.warn(`an element with the key of "${key}" already exists`);
+    } else {
+      s.elements[key] = se;
+    }
   };
 }
 
