@@ -127,12 +127,12 @@ export type StyleBlock<T extends string> = {
   [P in T]: StyleBlockShape;
 };
 
-export interface StyleBlock {
+export type StyleBlocks = {
   [key: string]: StyleBlock<string>;
-}
+};
 
 export type Styles = {
-  blocks?: StyleBlock;
+  blocks?: StyleBlocks;
   border?: StyleBorder;
   color?: StyleColor;
   css?: string;
