@@ -1,7 +1,6 @@
 import { SettingBlockShape, SettingSpacing } from "../definitions/settings.ts";
 import { SettingTypography } from "../definitions/settings.ts";
 import {
-  SettingBlock,
   SettingBorder,
   SettingColor,
   SettingLayout,
@@ -16,6 +15,7 @@ export function withAppearanceTools(
     s.appearanceTools = use;
   };
 }
+
 export function withSettingBlock<T extends string>(
   namespace: T,
   settings: Partial<SettingBlockShape>,
@@ -36,23 +36,6 @@ export function withSettingBlock<T extends string>(
     s.blocks = { ...s.blocks, ...sb };
   };
 }
-
-// export function withSettingBlock<T extends string>(
-//   sb: SettingBlock<T>,
-// ): (s: Settings) => void {
-//   const key = Object.keys(sb)[0];
-//   return (s: Settings): void => {
-//     if (!s.blocks) {
-//       s.blocks = {};
-//     }
-//
-//     if (key in s.blocks) {
-//       console.warn(`A setting block with a key of "${key}" already exists`);
-//     } else {
-//       s.blocks = { ...s.blocks, ...sb };
-//     }
-//   };
-// }
 
 export function withSettingBorder(sb: SettingBorder): (s: Settings) => void {
   return (s: Settings): void => {

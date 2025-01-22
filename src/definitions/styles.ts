@@ -85,8 +85,15 @@ export interface StyleElementShape {
   typography?: StyleTypography;
 }
 
-export type StyleElement = StyleElementShape;
+// export type StyleElement = StyleElementShape;
 
+export type StyleElement<T extends string> = {
+  [P in T]: StyleElementShape;
+};
+
+export type StyleElements = {
+  [key: string]: StyleElement<string>;
+};
 export type StyleElementWithPseudoClass = StyleElementShape & {
   ":hover"?: StyleElementShape;
   ":focus"?: StyleElementShape;
@@ -95,19 +102,19 @@ export type StyleElementWithPseudoClass = StyleElementShape & {
   ":any-link"?: StyleElementShape;
 };
 
-export interface StyleElements {
-  h1?: StyleElement;
-  h2?: StyleElement;
-  h3?: StyleElement;
-  h4?: StyleElement;
-  h5?: StyleElement;
-  h6?: StyleElement;
-  link?: StyleElementWithPseudoClass;
-  cite?: StyleElement;
-  button?: StyleElementWithPseudoClass;
-  heading?: StyleElement;
-  caption?: StyleElement;
-}
+// export interface StyleElements {
+//   h1?: StyleElement;
+//   h2?: StyleElement;
+//   h3?: StyleElement;
+//   h4?: StyleElement;
+//   h5?: StyleElement;
+//   h6?: StyleElement;
+//   link?: StyleElementWithPseudoClass;
+//   cite?: StyleElement;
+//   button?: StyleElementWithPseudoClass;
+//   heading?: StyleElement;
+//   caption?: StyleElement;
+// }
 
 export interface StyleBlockShape {
   elements?: StyleElements;

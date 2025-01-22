@@ -1,5 +1,5 @@
 import {
-  StyleBlock,
+  StyleBlockShape,
   StyleBorder,
   StyleColor,
   StyleDimension,
@@ -12,21 +12,26 @@ import {
   StyleTypography,
   StyleValue,
 } from "../definitions/styles.ts";
+import { newStyleBlock, withStyleBlockShape } from "./blocks/main.ts";
 
 export function withStyleBlock<T extends string>(
-  key: string,
-  sb: StyleBlock<T>,
+  namespace: T,
+  styles: Partial<StyleBlockShape>,
 ): (s: Styles) => void {
   return (s: Styles): void => {
     if (!s.blocks) {
       s.blocks = {};
     }
 
-    if (key in s.blocks) {
-      console.warn(`A style block with a key of "${key}" already exists`);
-    } else {
-      s.blocks[key] = sb;
+    if (namespace in s.blocks) {
+      console.warn(
+        `A setting block with a key of "${namespace}" already exists.`,
+      );
+      return;
     }
+
+    const sb = newStyleBlock(namespace, withStyleBlockShape(styles));
+    s.blocks = { ...s.blocks, ...sb };
   };
 }
 
