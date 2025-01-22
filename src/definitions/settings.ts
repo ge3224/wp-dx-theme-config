@@ -181,7 +181,7 @@ export interface SettingTypography {
   textDecoration?: boolean;
 }
 
-export interface SettingBlockShape {
+export type SettingBlockShape = {
   color?: SettingColor;
   border?: SettingBorder;
   shadow?: SettingShadow;
@@ -194,15 +194,19 @@ export interface SettingBlockShape {
   dimensions?: SettingDimensions;
   typography?: SettingTypography;
   appearanceTools?: boolean;
-}
+};
 
 export type SettingBlock<T extends string> = {
   [P in T]: SettingBlockShape;
 };
 
-export type SettingBlocks = {
-  [key: string]: SettingBlock<string>;
+export type SettingBlocks<K extends string = string> = {
+  [Key in K]: SettingBlock<Key>;
 };
+
+// export type SettingBlocks = {
+//   [key: string]: SettingBlock<string>;
+// };
 
 export interface Settings {
   appearanceTools?: boolean;

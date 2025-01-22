@@ -1,4 +1,4 @@
-import { SettingSpacing } from "../definitions/settings.ts";
+import { SettingBlockShape, SettingSpacing } from "../definitions/settings.ts";
 import { SettingTypography } from "../definitions/settings.ts";
 import {
   SettingBlock,
@@ -7,6 +7,7 @@ import {
   SettingLayout,
   Settings,
 } from "../definitions/settings.ts";
+import { newSettingBlock, withSettingBlockShape } from "./blocks/main.ts";
 
 export function withAppearanceTools(
   use: boolean,
@@ -15,23 +16,43 @@ export function withAppearanceTools(
     s.appearanceTools = use;
   };
 }
-
 export function withSettingBlock<T extends string>(
-  key: string,
-  sb: SettingBlock<T>,
+  namespace: T,
+  settings: Partial<SettingBlockShape>,
 ): (s: Settings) => void {
   return (s: Settings): void => {
     if (!s.blocks) {
       s.blocks = {};
     }
 
-    if (key in s.blocks) {
-      console.warn(`A setting block with a key of "${key}" already exists`);
-    } else {
-      s.blocks = { ...s.blocks, ...sb };
+    if (namespace in s.blocks) {
+      console.warn(
+        `A setting block with a key of "${namespace}" already exists`,
+      );
+      return;
     }
+
+    const sb = newSettingBlock(namespace, withSettingBlockShape(settings));
+    s.blocks = { ...s.blocks, ...sb };
   };
 }
+
+// export function withSettingBlock<T extends string>(
+//   sb: SettingBlock<T>,
+// ): (s: Settings) => void {
+//   const key = Object.keys(sb)[0];
+//   return (s: Settings): void => {
+//     if (!s.blocks) {
+//       s.blocks = {};
+//     }
+//
+//     if (key in s.blocks) {
+//       console.warn(`A setting block with a key of "${key}" already exists`);
+//     } else {
+//       s.blocks = { ...s.blocks, ...sb };
+//     }
+//   };
+// }
 
 export function withSettingBorder(sb: SettingBorder): (s: Settings) => void {
   return (s: Settings): void => {

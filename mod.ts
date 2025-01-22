@@ -26,6 +26,7 @@ export {
   withSettingSpacing,
   withSettingTypography,
 } from "./src/settings/main.ts";
+export { newSettingBlock } from "./src/settings/blocks/main.ts";
 
 export type { Styles } from "./src/definitions/styles.ts";
 export {
