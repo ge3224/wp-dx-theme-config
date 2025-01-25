@@ -1,4 +1,4 @@
-import { TemplatePart, TemplateParts } from "../definitions/template_parts.ts";
+import { TemplatePart, TemplateParts } from "./types.ts";
 
 export function withTemplatePart(
   tt: TemplatePart,
@@ -16,19 +16,6 @@ export function withTemplatePart(
   };
 }
 
-/**
- *
-    {
-      area: "header",
-      name: "header",
-      title: "Header",
-    },
-    {
-      area: "footer",
-      name: "footer",
-      title: "Footer",
-    },
- */
 export function newTemplateParts(
   ...mods: Array<(tp: TemplateParts) => void>
 ): TemplateParts {

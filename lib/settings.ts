@@ -1,13 +1,48 @@
-import { SettingBlockShape, SettingSpacing } from "../definitions/settings.ts";
-import { SettingTypography } from "../definitions/settings.ts";
 import {
+  SettingBlock,
+  SettingBlockShape,
   SettingBorder,
   SettingColor,
   SettingLayout,
   Settings,
-} from "../definitions/settings.ts";
-import { newSettingBlock, withSettingBlockShape } from "./blocks/main.ts";
+  SettingSpacing,
+  SettingTypography,
+} from "./types.ts";
 
+export function newSettingCustom(): Record<string, unknown> {
+  return {};
+}
+
+export function withSettingBlockShape<T extends string>(
+  settings: Partial<SettingBlockShape>,
+): (sb: SettingBlock<T>) => void {
+  return (sb: SettingBlock<T>): void => {
+    const key = Object.keys(sb)[0] as keyof typeof sb;
+
+    if (!key) {
+      console.warn("Settings block is empty, no key found.");
+      return;
+    }
+
+    const shape = sb[key];
+
+    if (shape) {
+      sb[key] = {
+        ...shape,
+        ...settings,
+      };
+    }
+  };
+}
+
+export function newSettingBlock<T extends string>(
+  ns: T,
+  ...mods: Array<(sb: SettingBlock<T>) => void>
+): SettingBlock<T> {
+  const sb = { [ns]: {} } as SettingBlock<T>;
+  mods.forEach((mod) => mod(sb));
+  return sb;
+}
 export function withAppearanceTools(
   use: boolean,
 ): (s: Settings) => void {

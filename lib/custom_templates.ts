@@ -1,7 +1,4 @@
-import {
-  CustomTemplate,
-  CustomTemplates,
-} from "../definitions/custom_templates.ts";
+import { CustomTemplate, CustomTemplates } from "./types.ts";
 
 export function withCustomTemplate(
   c: CustomTemplate,

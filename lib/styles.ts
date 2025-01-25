@@ -1,19 +1,81 @@
 import {
+  StyleBlock,
   StyleBlockShape,
   StyleBorder,
   StyleColor,
   StyleDimension,
-  StyleElement,
   StyleElements,
+  StyleElementShape,
   StyleFilter,
   StyleOutline,
   Styles,
   StyleSpacing,
   StyleTypography,
   StyleValue,
-} from "../definitions/styles.ts";
-import { newStyleBlock, withStyleBlockShape } from "./blocks/main.ts";
+} from "./types.ts";
 
+export function withStyleBlockShape<T extends string>(
+  styles: Partial<StyleBlockShape>,
+): (sb: StyleBlock<T>) => void {
+  return (sb: StyleBlock<T>): void => {
+    const key = Object.keys(sb)[0] as keyof typeof sb;
+    if (!key) {
+      console.warn("Style block is empty, no key found.");
+      return;
+    }
+
+    const shape = sb[key];
+    if (shape) {
+      sb[key] = {
+        ...shape,
+        ...styles,
+      };
+    }
+  };
+}
+
+export function newStyleBlock<T extends string>(
+  ns: T,
+  ...mods: Array<(sb: StyleBlock<T>) => void>
+): StyleBlock<T> {
+  const sb = { [ns]: {} } as StyleBlock<T>;
+  mods.forEach((mod) => mod(sb));
+  return sb;
+}
+export function withStyleElementShape<
+  T extends string,
+  Pseudo extends boolean = false,
+>(
+  styles: Partial<StyleElementShape<Pseudo>>,
+): (se: StyleElement<T, Pseudo>) => void {
+  return (se: StyleElement<T, Pseudo>): void => {
+    const key = Object.keys(se)[0] as keyof typeof se;
+    if (!key) {
+      console.warn("Element Style is empty, no key found.");
+      return;
+    }
+
+    const shape = se[key];
+    if (shape) {
+      se[key] = {
+        ...shape,
+        ...styles,
+      };
+    }
+  };
+}
+
+export function newStyleElement<
+  T extends string,
+  Pseudo extends boolean = false,
+>(
+  tag: T,
+  ...mods: Array<(se: StyleElement<T, Pseudo>) => void>
+): StyleElement<T, Pseudo> {
+  const se = { [tag]: {} } as StyleElement<T, Pseudo>;
+  mods.forEach((mod) => mod(se));
+  return se;
+}
 export function withStyleBlock<T extends string>(
   namespace: T,
   styles: Partial<StyleBlockShape>,
@@ -25,7 +87,7 @@ export function withStyleBlock<T extends string>(
 
     if (namespace in s.blocks) {
       console.warn(
-        `A setting block with a key of "${namespace}" already exists.`,
+        `A block style with a key of "${namespace}" already exists.`,
       );
       return;
     }
@@ -59,20 +121,37 @@ export function withStyleDimension(sd: StyleDimension): (s: Styles) => void {
   };
 }
 
-export function withStyleElement(
-  key: string,
-  se: StyleElement,
+export function withStyleElement<
+  T extends string,
+  Pseudo extends boolean = false,
+>(
+  tag: T,
+  styles: StyleElementShape<Pseudo>,
+  hasPseudoClasses?: Pseudo,
 ): (s: Styles) => void {
   return (s: Styles): void => {
     if (!s.elements) {
       s.elements = {};
     }
 
-    if (key in s.elements) {
-      console.warn(`an element with the key of "${key}" already exists`);
-    } else {
-      s.elements[key] = se;
+    if (tag in s.elements) {
+      console.warn(
+        `An element style with a key of "${tag}" already exists.`,
+      );
+      return;
     }
+
+    const se = hasPseudoClasses
+      ? newStyleElement(
+        tag,
+        withStyleElementShape(styles as StyleElementShape<true>),
+      )
+      : newStyleElement(
+        tag,
+        withStyleElementShape(styles as StyleElementShape),
+      );
+
+    s.elements = { ...s.elements, ...se };
   };
 }
 

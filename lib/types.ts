@@ -1,3 +1,15 @@
+export type CustomTemplate = {
+  name: string;
+  title: string;
+  postTypes?: Array<string>;
+};
+
+export type CustomTemplates = Array<CustomTemplate>;
+
+export type Pattern = string;
+
+export type Patterns = Array<string>;
+
 export interface SettingBorder {
   color?: boolean;
   style?: boolean;
@@ -218,3 +230,176 @@ export interface Settings {
   spacing?: SettingSpacing;
   typography?: SettingTypography;
 }
+
+export type StyleValue = string | { ref: string };
+
+export type StyleBorderSide = {
+  width?: StyleValue;
+  style?: StyleValue;
+  color?: StyleValue;
+};
+
+export type StyleBorderRadius = {
+  ref?: string;
+  topLeft?: StyleValue;
+  topRight?: StyleValue;
+  bottomLeft?: StyleValue;
+  bottomRight?: StyleValue;
+};
+
+export type StyleBorder = {
+  top?: StyleBorderSide;
+  left?: StyleBorderSide;
+  color?: StyleValue;
+  style?: StyleValue;
+  width?: StyleValue;
+  right?: StyleBorderSide;
+  radius?: string | StyleBorderRadius;
+  bottom?: StyleBorderSide;
+};
+
+export type StyleColor = {
+  text?: StyleValue;
+  gradient?: StyleValue;
+  background?: StyleValue;
+};
+
+export type StyleDimension = {
+  minHeight?: StyleValue;
+  aspectRatio?: StyleValue;
+};
+
+export type StyleFilter = {
+  duotone: object;
+};
+
+export type StyleOutline = {
+  color?: StyleValue;
+  style?: StyleValue;
+  width?: StyleValue;
+  offset?: StyleValue;
+};
+
+export type StyleSpacingSide = {
+  top: StyleValue;
+  right: StyleValue;
+  bottom: StyleValue;
+  left: StyleValue;
+};
+
+export type StyleSpacing = {
+  margin?: StyleSpacingSide;
+  padding?: StyleSpacingSide;
+  blockGap?: StyleValue;
+};
+
+export type StyleTypography = {
+  fontSize?: StyleValue;
+  fontStyle?: StyleValue;
+  fontFamily?: StyleValue;
+  fontWeight?: StyleValue;
+  lineHeight?: StyleValue;
+  textColumns?: string;
+  writingMode?: StyleValue;
+  letterSpacing?: StyleValue;
+  textTransform?: StyleValue;
+  textDecoration?: StyleValue;
+};
+
+export type StyleElementShapeCore = {
+  border?: StyleBorder;
+  color?: StyleColor;
+  css?: string;
+  dimension?: StyleDimension;
+  filter?: StyleFilter;
+  shadow?: StyleValue;
+  spacing?: StyleSpacing;
+  outline?: StyleOutline;
+  typography?: StyleTypography;
+};
+
+export type StyleElementShape<Pseudo extends boolean = false> = Pseudo extends
+  true ? StyleElementShapeCore & {
+    ":hover"?: StyleElementShapeCore;
+    ":focus"?: StyleElementShapeCore;
+    ":active"?: StyleElementShapeCore;
+    ":visited"?: StyleElementShapeCore;
+    ":any-link"?: StyleElementShapeCore;
+  }
+  : StyleElementShapeCore;
+
+export type StyleElement<T extends string, Pseudo extends boolean = false> = {
+  [P in T]: StyleElementShape<Pseudo>;
+};
+
+export type StyleElements = {
+  [key: string]: StyleElement<string>;
+};
+
+// export type StyleElements ={
+//   h1?: StyleElement;
+//   h2?: StyleElement;
+//   h3?: StyleElement;
+//   h4?: StyleElement;
+//   h5?: StyleElement;
+//   h6?: StyleElement;
+//   link?: StyleElementWithPseudoClass;
+//   cite?: StyleElement;
+//   button?: StyleElementWithPseudoClass;
+//   heading?: StyleElement;
+//   caption?: StyleElement;
+// }
+
+export type StyleBlockShape = {
+  elements?: StyleElements;
+  typography?: StyleTypography;
+  spacing?: StyleSpacing;
+  shadow?: StyleValue;
+  color?: StyleColor;
+  outline?: StyleOutline;
+  filter?: StyleFilter;
+  dimensions?: StyleDimension;
+  css?: string;
+  border?: StyleBorder;
+  variations?: Record<string, unknown>;
+};
+
+export type StyleBlock<T extends string> = {
+  [P in T]: StyleBlockShape;
+};
+
+export type StyleBlocks = {
+  [key: string]: StyleBlock<string>;
+};
+
+export type Styles = {
+  blocks?: StyleBlocks;
+  border?: StyleBorder;
+  color?: StyleColor;
+  css?: string;
+  dimension?: StyleDimension;
+  elements?: StyleElements;
+  filter?: StyleFilter;
+  outline?: StyleOutline;
+  shadow?: StyleValue;
+  spacing?: StyleSpacing;
+  typography?: StyleTypography;
+};
+
+export type TemplatePart = {
+  name: string;
+  title?: string;
+  area?: string;
+};
+
+export type TemplateParts = Array<TemplatePart>;
+
+export type ThemeJson = {
+  $schema: string;
+  version: number;
+  settings: Settings;
+  styles: Styles;
+  customTemplates: CustomTemplates;
+  templateParts: TemplateParts;
+  patterns: Patterns;
+};

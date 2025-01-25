@@ -1,4 +1,4 @@
-import { Pattern, Patterns } from "../definitions/patterns.ts";
+import { Pattern, Patterns } from "./types.ts";
 
 export function withPattern(p: Pattern): (pp: Patterns) => void {
   return (pp: Patterns): void => {

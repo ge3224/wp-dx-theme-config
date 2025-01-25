@@ -1,9 +1,11 @@
-import { CustomTemplates } from "./definitions/custom_templates.ts";
-import { Patterns } from "./definitions/patterns.ts";
-import { Settings } from "./definitions/settings.ts";
-import { Styles } from "./definitions/styles.ts";
-import { TemplateParts } from "./definitions/template_parts.ts";
-import { ThemeJson } from "./definitions/main.ts";
+import {
+  CustomTemplates,
+  Patterns,
+  Settings,
+  Styles,
+  TemplateParts,
+  ThemeJson,
+} from "./types.ts";
 
 export function withVersion(n: number): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
