@@ -4,17 +4,18 @@ import {
   StyleBorder,
   StyleColor,
   StyleDimension,
+  StyleElement,
   StyleElements,
   StyleElementShape,
   StyleFilter,
   StyleOutline,
-  Styles,
+  StylesConfig,
   StyleSpacing,
   StyleTypography,
   StyleValue,
 } from "./types.ts";
 
-export function withStyleBlockShape<T extends string>(
+function withStyleBlockShape<T extends string>(
   styles: Partial<StyleBlockShape>,
 ): (sb: StyleBlock<T>) => void {
   return (sb: StyleBlock<T>): void => {
@@ -34,7 +35,7 @@ export function withStyleBlockShape<T extends string>(
   };
 }
 
-export function newStyleBlock<T extends string>(
+function newStyleBlock<T extends string>(
   ns: T,
   ...mods: Array<(sb: StyleBlock<T>) => void>
 ): StyleBlock<T> {
@@ -42,6 +43,7 @@ export function newStyleBlock<T extends string>(
   mods.forEach((mod) => mod(sb));
   return sb;
 }
+
 export function withStyleElementShape<
   T extends string,
   Pseudo extends boolean = false,
@@ -79,8 +81,8 @@ export function newStyleElement<
 export function withStyleBlock<T extends string>(
   namespace: T,
   styles: Partial<StyleBlockShape>,
-): (s: Styles) => void {
-  return (s: Styles): void => {
+): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     if (!s.blocks) {
       s.blocks = {};
     }
@@ -97,26 +99,28 @@ export function withStyleBlock<T extends string>(
   };
 }
 
-export function withStyleBorder(sb: StyleBorder): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleBorder(sb: StyleBorder): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.border = sb;
   };
 }
 
-export function withStyleColor(sc: StyleColor): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleColor(sc: StyleColor): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.color = sc;
   };
 }
 
-export function withCss(css: string): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleCss(css: string): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.css = css;
   };
 }
 
-export function withStyleDimension(sd: StyleDimension): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleDimension(
+  sd: StyleDimension,
+): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.dimension = sd;
   };
 }
@@ -128,8 +132,8 @@ export function withStyleElement<
   tag: T,
   styles: StyleElementShape<Pseudo>,
   hasPseudoClasses?: Pseudo,
-): (s: Styles) => void {
-  return (s: Styles): void => {
+): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     if (!s.elements) {
       s.elements = {};
     }
@@ -155,44 +159,50 @@ export function withStyleElement<
   };
 }
 
-export function withStyleElements(se: StyleElements): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleElements(
+  se: StyleElements,
+): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.elements = se;
   };
 }
 
-export function withStyleFilter(sf: StyleFilter): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleFilter(sf: StyleFilter): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.filter = sf;
   };
 }
 
-export function withStyleOutline(so: StyleOutline): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleOutline(so: StyleOutline): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.outline = so;
   };
 }
 
-export function withStyleShadow(ss: StyleValue): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleShadow(ss: StyleValue): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.shadow = ss;
   };
 }
 
-export function withStyleSpacing(ss: StyleSpacing): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleSpacing(ss: StyleSpacing): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.spacing = ss;
   };
 }
 
-export function withStyleTypography(st: StyleTypography): (s: Styles) => void {
-  return (s: Styles): void => {
+export function withStyleTypography(
+  st: StyleTypography,
+): (s: StylesConfig) => void {
+  return (s: StylesConfig): void => {
     s.typography = st;
   };
 }
 
-export function newStyles(...mods: Array<(s: Styles) => void>): Styles {
-  const s: Styles = {};
+export function newStyles(
+  ...mods: Array<(s: StylesConfig) => void>
+): StylesConfig {
+  const s: StylesConfig = {};
   mods.forEach((mod) => mod(s));
   return s;
 }

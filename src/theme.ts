@@ -1,54 +1,54 @@
 import {
-  CustomTemplates,
-  Patterns,
-  Settings,
-  Styles,
-  TemplateParts,
+  CustomTemplatesConfig,
+  PatternsConfig,
+  SettingsConfig,
+  StylesConfig,
+  TemplatePartsConfig,
   ThemeJson,
 } from "./types.ts";
 
-export function withVersion(n: number): (t: ThemeJson) => void {
+export function withConfigVersion(n: number): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.version = n;
   };
 }
 
-export function withSchema(schema: string): (t: ThemeJson) => void {
+export function withConfigSchema(schema: string): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.$schema = schema;
   };
 }
 
-export function withSettings(s: Settings): (t: ThemeJson) => void {
+export function withConfigSettings(s: SettingsConfig): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.settings = s;
   };
 }
 
-export function withStyles(s: Styles): (t: ThemeJson) => void {
+export function withConfigStyles(s: StylesConfig): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.styles = s;
   };
 }
 
-export function withCustomTemplates(
-  ct: CustomTemplates,
+export function withConfigCustomTemplates(
+  ct: CustomTemplatesConfig,
 ): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.customTemplates = ct;
   };
 }
 
-export function withTemplateParts(
-  tp: TemplateParts,
+export function withConfigTemplateParts(
+  tp: TemplatePartsConfig,
 ): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.templateParts = tp;
   };
 }
 
-export function withPatterns(
-  p: Patterns,
+export function withConfigPatterns(
+  p: PatternsConfig,
 ): (t: ThemeJson) => void {
   return (t: ThemeJson): void => {
     t.patterns = p;

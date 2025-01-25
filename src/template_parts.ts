@@ -1,9 +1,9 @@
-import { TemplatePart, TemplateParts } from "./types.ts";
+import { TemplatePart, TemplatePartsConfig } from "./types.ts";
 
 export function withTemplatePart(
   tt: TemplatePart,
-): (tp: TemplateParts) => void {
-  return (tp: TemplateParts): void => {
+): (tp: TemplatePartsConfig) => void {
+  return (tp: TemplatePartsConfig): void => {
     const exists = tp.some((part) => part.name === tt.name);
 
     if (!exists) {
@@ -17,9 +17,9 @@ export function withTemplatePart(
 }
 
 export function newTemplateParts(
-  ...mods: Array<(tp: TemplateParts) => void>
-): TemplateParts {
-  const tp: TemplateParts = [];
+  ...mods: Array<(tp: TemplatePartsConfig) => void>
+): TemplatePartsConfig {
+  const tp: TemplatePartsConfig = [];
 
   mods.forEach((mod) => mod(tp));
 

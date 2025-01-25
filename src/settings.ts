@@ -4,16 +4,16 @@ import {
   SettingBorder,
   SettingColor,
   SettingLayout,
-  Settings,
+  SettingsConfig,
   SettingSpacing,
   SettingTypography,
 } from "./types.ts";
 
-export function newSettingCustom(): Record<string, unknown> {
-  return {};
-}
+// function newSettingCustom(): Record<string, unknown> {
+//   return {};
+// }
 
-export function withSettingBlockShape<T extends string>(
+function withSettingBlockShape<T extends string>(
   settings: Partial<SettingBlockShape>,
 ): (sb: SettingBlock<T>) => void {
   return (sb: SettingBlock<T>): void => {
@@ -35,7 +35,7 @@ export function withSettingBlockShape<T extends string>(
   };
 }
 
-export function newSettingBlock<T extends string>(
+function newSettingBlock<T extends string>(
   ns: T,
   ...mods: Array<(sb: SettingBlock<T>) => void>
 ): SettingBlock<T> {
@@ -43,10 +43,10 @@ export function newSettingBlock<T extends string>(
   mods.forEach((mod) => mod(sb));
   return sb;
 }
-export function withAppearanceTools(
+export function withSettingAppearanceTools(
   use: boolean,
-): (s: Settings) => void {
-  return (s: Settings): void => {
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.appearanceTools = use;
   };
 }
@@ -54,8 +54,8 @@ export function withAppearanceTools(
 export function withSettingBlock<T extends string>(
   namespace: T,
   settings: Partial<SettingBlockShape>,
-): (s: Settings) => void {
-  return (s: Settings): void => {
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     if (!s.blocks) {
       s.blocks = {};
     }
@@ -72,48 +72,58 @@ export function withSettingBlock<T extends string>(
   };
 }
 
-export function withSettingBorder(sb: SettingBorder): (s: Settings) => void {
-  return (s: Settings): void => {
+export function withSettingBorder(
+  sb: SettingBorder,
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.border = sb;
   };
 }
 
-export function withSettingColor(sc: SettingColor): (s: Settings) => void {
-  return (s: Settings): void => {
+export function withSettingColor(
+  sc: SettingColor,
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.color = sc;
   };
 }
 
 export function withSettingCustom(
   custom: Record<string, unknown>,
-): (s: Settings) => void {
-  return (s: Settings): void => {
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.custom = custom;
   };
 }
 
-export function withSettingLayout(sl: SettingLayout): (s: Settings) => void {
-  return (s: Settings): void => {
+export function withSettingLayout(
+  sl: SettingLayout,
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.layout = sl;
   };
 }
 
-export function withSettingSpacing(ss: SettingSpacing): (s: Settings) => void {
-  return (s: Settings): void => {
+export function withSettingSpacing(
+  ss: SettingSpacing,
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.spacing = ss;
   };
 }
 
 export function withSettingTypography(
   st: SettingTypography,
-): (s: Settings) => void {
-  return (s: Settings): void => {
+): (s: SettingsConfig) => void {
+  return (s: SettingsConfig): void => {
     s.typography = st;
   };
 }
 
-export function newSettings(...mods: Array<(s: Settings) => void>): Settings {
-  const s: Settings = {
+export function newSettings(
+  ...mods: Array<(s: SettingsConfig) => void>
+): SettingsConfig {
+  const s: SettingsConfig = {
     appearanceTools: true,
     blocks: {},
     border: {},

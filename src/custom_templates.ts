@@ -1,9 +1,9 @@
-import { CustomTemplate, CustomTemplates } from "./types.ts";
+import { CustomTemplate, CustomTemplatesConfig } from "./types.ts";
 
 export function withCustomTemplate(
   c: CustomTemplate,
-): (ct: CustomTemplates) => void {
-  return (ct: CustomTemplates): void => {
+): (ct: CustomTemplatesConfig) => void {
+  return (ct: CustomTemplatesConfig): void => {
     const exists = ct.some((t) => t.name === c.name);
     if (!exists) {
       ct.push(c);
@@ -14,9 +14,9 @@ export function withCustomTemplate(
 }
 
 export function newCustomTemplates(
-  ...mods: Array<(ct: CustomTemplates) => void>
-): CustomTemplates {
-  const ct: CustomTemplates = [];
+  ...mods: Array<(ct: CustomTemplatesConfig) => void>
+): CustomTemplatesConfig {
+  const ct: CustomTemplatesConfig = [];
   mods.forEach((mod) => mod(ct));
   return ct;
 }

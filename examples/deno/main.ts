@@ -3,17 +3,17 @@ import {
   newStyles,
   newThemeJson,
   ThemeJson,
-  withAppearanceTools,
+  withConfigSettings,
+  withConfigStyles,
+  withSettingAppearanceTools,
   withSettingColor,
-  withSettings,
   withSettingSpacing,
   withStyleElement,
-  withStyles,
 } from "../../mod.ts";
 
 function config(): ThemeJson {
   const settings = newSettings(
-    withAppearanceTools(true),
+    withSettingAppearanceTools(true),
     withSettingColor({
       background: true,
       custom: false,
@@ -50,7 +50,7 @@ function config(): ThemeJson {
     ),
   );
 
-  return newThemeJson(withSettings(settings), withStyles(styles));
+  return newThemeJson(withConfigSettings(settings), withConfigStyles(styles));
 }
 
 async function writeJson() {

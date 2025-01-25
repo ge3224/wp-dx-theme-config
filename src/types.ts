@@ -4,38 +4,38 @@ export type CustomTemplate = {
   postTypes?: Array<string>;
 };
 
-export type CustomTemplates = Array<CustomTemplate>;
+export type CustomTemplatesConfig = Array<CustomTemplate>;
 
 export type Pattern = string;
 
-export type Patterns = Array<string>;
+export type PatternsConfig = Array<string>;
 
-export interface SettingBorder {
+export type SettingBorder = {
   color?: boolean;
   style?: boolean;
   width?: boolean;
   radius?: boolean;
-}
+};
 
-export interface SettingDuotone {
+export type SettingDuotone = {
   name?: string;
   slug?: string;
   colors?: Array<string>;
-}
+};
 
-export interface SettngPalette {
+export type SettngPalette = {
   slug?: string;
   name?: string;
   color?: string;
-}
+};
 
-export interface SettingGradient {
+export type SettingGradient = {
   name?: string;
   slug?: string;
   gradient?: string;
-}
+};
 
-export interface SettingColor {
+export type SettingColor = {
   background?: boolean;
   custom?: boolean;
   link?: boolean;
@@ -50,25 +50,25 @@ export interface SettingColor {
   defaultDuotone?: boolean;
   defaultPalette?: boolean;
   defaultGradients?: boolean;
-}
+};
 
-export interface SettingShadowPreset {
+export type SettingShadowPreset = {
   slug: string;
   name: string;
   shadow: string;
-}
+};
 
-export interface SettingShadow {
+export type SettingShadow = {
   presets: Array<SettingShadowPreset>;
   defaultPresets: boolean;
-}
+};
 
-export interface SettingLayout {
+export type SettingLayout = {
   allowEditing?: boolean;
   wideSize?: string;
   contentSize?: string;
   allowCustomContentAndWideSize?: boolean;
-}
+};
 
 export type SettingSpacingUnit = "px" | "em" | "rem" | "vh" | "vw" | "%";
 
@@ -99,21 +99,21 @@ export type SettingSpacingScaleUnit =
 
 export type SettingSpacingScaleOperator = "*" | "+";
 
-export interface SettingSpacingScale {
+export type SettingSpacingScale = {
   unit?: SettingSpacingScaleUnit;
   steps?: number;
   operator?: SettingSpacingScaleOperator;
   increment?: number;
   mediumStep?: number;
-}
+};
 
-export interface SettingSpacingSize {
+export type SettingSpacingSize = {
   name: string;
   size: string;
   slug: string;
-}
+};
 
-export interface SettingSpacing {
+export type SettingSpacing = {
   units?: Array<SettingSpacingUnit>;
   margin?: boolean;
   padding?: boolean;
@@ -121,38 +121,38 @@ export interface SettingSpacing {
   spacingSizes?: Array<SettingSpacingSize>;
   spacingScale?: SettingSpacingScale;
   customSpacingSize?: boolean;
-}
+};
 
-export interface SettingLightbox {
+export type SettingLightbox = {
   enabled?: boolean;
   allowEditing?: boolean;
-}
+};
 
-export interface SettingPosition {
+export type SettingPosition = {
   sticky?: boolean;
-}
+};
 
-export interface SettingBackground {
+export type SettingBackground = {
   backgroundSize?: boolean;
   backgroundImage?: boolean;
-}
+};
 
-export interface SettingDimensions {
+export type SettingDimensions = {
   minHeight?: boolean;
   aspectRatio?: boolean;
-}
+};
 
-export interface SettingFluid {
+export type SettingFluid = {
   min: string;
   max: string;
-}
+};
 
-export interface SettingFontSize {
+export type SettingFontSize = {
   name?: string;
   slug?: string;
   size?: string;
   fluid?: boolean | SettingFluid;
-}
+};
 
 export type SettingFontDisplay =
   | "auto"
@@ -161,23 +161,23 @@ export type SettingFontDisplay =
   | "swap"
   | "optional";
 
-export interface SettingFontFace {
+export type SettingFontFace = {
   fontFamily?: string;
   src?: Array<string>;
   fontStyle?: "normal" | string;
   fontWeight?: "400" | string;
   sizeAdjust?: string;
   fontDisplay?: SettingFontDisplay;
-}
+};
 
-export interface SettingFontFamily {
+export type SettingFontFamily = {
   slug?: string;
   name?: string;
   fontFace?: Array<SettingFontFace>;
   fontFamily?: string;
-}
+};
 
-export interface SettingTypography {
+export type SettingTypography = {
   fluid?: boolean;
   dropCap?: boolean;
   fontStyle?: boolean;
@@ -191,7 +191,7 @@ export interface SettingTypography {
   textTransform?: boolean;
   customFontSize?: boolean;
   textDecoration?: boolean;
-}
+};
 
 export type SettingBlockShape = {
   color?: SettingColor;
@@ -212,24 +212,20 @@ export type SettingBlock<T extends string> = {
   [P in T]: SettingBlockShape;
 };
 
-export type SettingBlocks<K extends string = string> = {
+export type SettingBlocksConfig<K extends string = string> = {
   [Key in K]: SettingBlock<Key>;
 };
 
-// export type SettingBlocks = {
-//   [key: string]: SettingBlock<string>;
-// };
-
-export interface Settings {
+export type SettingsConfig = {
   appearanceTools?: boolean;
-  blocks?: SettingBlocks;
+  blocks?: SettingBlocksConfig;
   border?: SettingBorder;
   color?: SettingColor;
   custom?: Record<string, unknown>;
   layout?: SettingLayout;
   spacing?: SettingSpacing;
   typography?: SettingTypography;
-}
+};
 
 export type StyleValue = string | { ref: string };
 
@@ -372,7 +368,7 @@ export type StyleBlocks = {
   [key: string]: StyleBlock<string>;
 };
 
-export type Styles = {
+export type StylesConfig = {
   blocks?: StyleBlocks;
   border?: StyleBorder;
   color?: StyleColor;
@@ -392,14 +388,14 @@ export type TemplatePart = {
   area?: string;
 };
 
-export type TemplateParts = Array<TemplatePart>;
+export type TemplatePartsConfig = Array<TemplatePart>;
 
 export type ThemeJson = {
   $schema: string;
   version: number;
-  settings: Settings;
-  styles: Styles;
-  customTemplates: CustomTemplates;
-  templateParts: TemplateParts;
-  patterns: Patterns;
+  settings: SettingsConfig;
+  styles: StylesConfig;
+  customTemplates: CustomTemplatesConfig;
+  templateParts: TemplatePartsConfig;
+  patterns: PatternsConfig;
 };
