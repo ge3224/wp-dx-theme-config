@@ -1,0 +1,33 @@
+{
+  "name": "Node.js Example",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "An example using Node.js to write theme.json",
+  "keywords": [
+    "WordPress",
+    "DX"
+  ],
+  "homepage": "https://jsr.io/@wp-dx/theme-config",
+  "bugs": {
+    "url": "https://github.com/ge3224/wp-dx-theme-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ge3224/wp-dx-theme-config.git"
+  },
+  "license": "MIT",
+  "author": "Jacob Benison",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "@wp-dx/theme-config": "npm:@jsr/wp-dx__theme-config@^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}

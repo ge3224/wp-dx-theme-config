@@ -1,11 +1,10 @@
-import {
+import type {
   StyleBlock,
   StyleBlockShape,
   StyleBorder,
   StyleColor,
   StyleDimension,
   StyleElement,
-  StyleElements,
   StyleElementShape,
   StyleFilter,
   StyleOutline,
