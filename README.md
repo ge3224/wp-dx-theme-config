@@ -7,7 +7,7 @@ comments. Use your tools and tame that unwieldy `theme.json` file.
 ## Usage Example
 
 ```typescript
-import { config, settings, styles } from "../mod.ts";
+import { config, settings, styles } from "@wp-dx/theme-config";
 
 async function writeJson() {
   const themeJson = config.create(
