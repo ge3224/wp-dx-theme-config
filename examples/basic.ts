@@ -9,7 +9,7 @@ import {
   withSettingColor,
   withSettingSpacing,
   withStyleElement,
-} from "../../mod.ts";
+} from "../mod.ts";
 
 function config(): ThemeJson {
   const settings = newSettings(
