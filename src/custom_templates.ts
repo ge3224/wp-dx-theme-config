@@ -1,4 +1,4 @@
-import { CustomTemplate, CustomTemplatesConfig } from "./types.ts";
+import type { CustomTemplate, CustomTemplatesConfig } from "./types.ts";
 
 export function withCustomTemplate(
   c: CustomTemplate,
@@ -20,3 +20,8 @@ export function newCustomTemplates(
   mods.forEach((mod) => mod(ct));
   return ct;
 }
+
+export const customTemplates = {
+  create: newCustomTemplates,
+  withCustomTemplate,
+};

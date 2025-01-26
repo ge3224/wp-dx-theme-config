@@ -7,44 +7,31 @@ comments. Use your tools and tame that unwieldy `theme.json` file.
 ## Usage Example
 
 ```typescript
-import {
-  newSettings,
-  newStyles,
-  newThemeJson,
-  ThemeJson,
-  withConfigSettings,
-  withConfigStyles,
-  withSettingAppearanceTools,
-  withSettingSpacing,
-  withStyleElement,
-} from "../mod.ts";
-import { withSettingTypography } from "../src/settings.ts";
-
-function config(): ThemeJson {
-  return newThemeJson(
-    withConfigSettings(
-      newSettings(
-        withSettingAppearanceTools(true),
-        withSettingSpacing({ padding: true, margin: true }),
-        withSettingTypography({ customFontSize: true, fontWeight: true }),
-      ),
-    ),
-    withConfigStyles(
-      newStyles(
-        withStyleElement("button", {
-          color: { text: "#ffffff", background: "#000000" },
-          ":hover": { color: { text: "#000000", background: "#fff47b" } },
-        }, true),
-      ),
-    ),
-  );
-}
+import { config, settings, styles } from "../mod.ts";
 
 async function writeJson() {
+  const themeJson = config.create(
+    config.withVersion(2),
+    config.withSchema("https://schemas.wp.org/wp/6.5/theme.json"),
+    config.withSettings(
+      settings.create(
+        settings.withAppearanceTools(true),
+        settings.withSpacing({ padding: true, margin: true }),
+        settings.withTypography({ customFontSize: true, fontWeight: true }),
+      ),
+    ),
+    config.withStyles(styles.create(
+      styles.withElement("button", {
+        color: { text: "#ffffff", background: "#000000" },
+        ":hover": { color: { text: "#000000", background: "#fff47b" } },
+      }, true),
+    )),
+  );
+
   try {
     await Deno.writeTextFile(
       "theme.json",
-      JSON.stringify(config(), null, 2),
+      JSON.stringify(themeJson, null, 2),
     );
     console.log("✓ theme.json updated");
   } catch (error) {
@@ -59,4 +46,4 @@ if (import.meta.main) {
 
 ## Inspiration
 
-Inspired by Anton P.'s article [How to Split Theme.json into Multiple Files with WordPress](https://fullstackdigital.io/blog/split-theme-json-into-multiple-files-with-wordpress) - solving the challenge of managing complex theme configurations.
+Inspired by the article [How to Split Theme.json into Multiple Files with WordPress](https://fullstackdigital.io/blog/split-theme-json-into-multiple-files-with-wordpress).

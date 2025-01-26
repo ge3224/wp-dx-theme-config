@@ -139,3 +139,15 @@ export function newSettings(
 
   return s;
 }
+
+export const settings = {
+  create: newSettings,
+  withAppearanceTools: withSettingAppearanceTools,
+  withSpacing: withSettingSpacing,
+  withBlock: withSettingBlock,
+  withBorder: withSettingBorder,
+  withColor: withSettingColor,
+  withCustom: withSettingCustom,
+  withLayout: withSettingLayout,
+  withTypography: withSettingTypography,
+};

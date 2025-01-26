@@ -1,4 +1,4 @@
-import { TemplatePart, TemplatePartsConfig } from "./types.ts";
+import type { TemplatePart, TemplatePartsConfig } from "./types.ts";
 
 export function withTemplatePart(
   tt: TemplatePart,
@@ -25,3 +25,8 @@ export function newTemplateParts(
 
   return tp;
 }
+
+export const templateParts = {
+  create: newTemplateParts,
+  withTemplatePart,
+};

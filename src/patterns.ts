@@ -1,4 +1,4 @@
-import { Pattern, PatternsConfig } from "./types.ts";
+import type { Pattern, PatternsConfig } from "./types.ts";
 
 export function withPattern(p: Pattern): (pp: PatternsConfig) => void {
   return (pp: PatternsConfig): void => {
@@ -19,3 +19,8 @@ export function newPatterns(
   mods.forEach((mod) => mod(pp));
   return pp;
 }
+
+export const patterns = {
+  create: newPatterns,
+  withPattern,
+};

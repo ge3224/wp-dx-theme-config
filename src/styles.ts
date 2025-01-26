@@ -159,13 +159,13 @@ export function withStyleElement<
   };
 }
 
-export function withStyleElements(
-  se: StyleElements,
-): (s: StylesConfig) => void {
-  return (s: StylesConfig): void => {
-    s.elements = se;
-  };
-}
+// export function withStyleElements(
+//   se: StyleElements,
+// ): (s: StylesConfig) => void {
+//   return (s: StylesConfig): void => {
+//     s.elements = se;
+//   };
+// }
 
 export function withStyleFilter(sf: StyleFilter): (s: StylesConfig) => void {
   return (s: StylesConfig): void => {
@@ -206,3 +206,17 @@ export function newStyles(
   mods.forEach((mod) => mod(s));
   return s;
 }
+
+export const styles = {
+  create: newStyles,
+  withBlock: withStyleBlock,
+  withBorder: withStyleBorder,
+  withColor: withStyleColor,
+  withCss: withStyleCss,
+  withDimension: withStyleDimension,
+  withElement: withStyleElement,
+  withFilter: withStyleFilter,
+  withOutline: withStyleOutline,
+  withShadow: withStyleShadow,
+  withSpacing: withStyleSpacing,
+};

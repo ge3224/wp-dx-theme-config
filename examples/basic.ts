@@ -1,63 +1,28 @@
-import {
-  newSettings,
-  newStyles,
-  newThemeJson,
-  ThemeJson,
-  withConfigSettings,
-  withConfigStyles,
-  withSettingAppearanceTools,
-  withSettingColor,
-  withSettingSpacing,
-  withStyleElement,
-} from "../mod.ts";
-
-function config(): ThemeJson {
-  const settings = newSettings(
-    withSettingAppearanceTools(true),
-    withSettingColor({
-      background: true,
-      custom: false,
-      defaultGradients: true,
-      defaultPalette: true,
-      text: true,
-    }),
-    withSettingSpacing({
-      blockGap: true,
-      customSpacingSize: true,
-      margin: true,
-      spacingScale: {
-        operator: "*",
-        increment: 1.5,
-        steps: 7,
-        mediumStep: 1.5,
-        unit: "rem",
-      },
-      padding: true,
-      units: ["px", "rem", "vh", "vw", "%"],
-    }),
-  );
-
-  const styles = newStyles(
-    withStyleElement(
-      "link",
-      {
-        ":hover": {
-          color: { text: "blue" },
-          typography: { textDecoration: "underline" },
-        },
-      },
-      true,
-    ),
-  );
-
-  return newThemeJson(withConfigSettings(settings), withConfigStyles(styles));
-}
+import { config, settings, styles } from "../mod.ts";
 
 async function writeJson() {
+  const themeJson = config.create(
+    config.withVersion(2),
+    config.withSchema("https://schemas.wp.org/wp/6.5/theme.json"),
+    config.withSettings(
+      settings.create(
+        settings.withAppearanceTools(true),
+        settings.withSpacing({ padding: true, margin: true }),
+        settings.withTypography({ customFontSize: true, fontWeight: true }),
+      ),
+    ),
+    config.withStyles(styles.create(
+      styles.withElement("button", {
+        color: { text: "#ffffff", background: "#000000" },
+        ":hover": { color: { text: "#000000", background: "#fff47b" } },
+      }, true),
+    )),
+  );
+
   try {
     await Deno.writeTextFile(
       "theme.json",
-      JSON.stringify(config(), null, 2),
+      JSON.stringify(themeJson, null, 2),
     );
     console.log("✓ theme.json updated");
   } catch (error) {

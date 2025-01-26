@@ -72,3 +72,14 @@ export function newThemeJson(
 
   return conf;
 }
+
+export const config = {
+  create: newThemeJson,
+  withCustomTemplates: withConfigCustomTemplates,
+  withPatterns: withConfigPatterns,
+  withSchema: withConfigSchema,
+  withSettings: withConfigSettings,
+  withStyles: withConfigStyles,
+  withTemplateParts: withConfigTemplateParts,
+  withVersion: withConfigVersion,
+};
