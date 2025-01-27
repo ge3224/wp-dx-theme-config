@@ -1,6 +1,8 @@
 name: Publish
 on:
   push:
+    branches:
+      - main
     tags:
       - 'v*'
 
@@ -14,16 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Check if Tag is on Main Branch
-        id: check_branch
-        run: |
-          TAG_REF="${GITHUB_REF#refs/tags/}"
-          BRANCH_NAME=$(git log -1 --pretty=%D "$TAG_REF" | grep -o "origin/main")
-          if [[ -z "$BRANCH_NAME" ]]; then
-            echo "Tag is not from the main branch. Exiting..."
-            exit 1
-          fi
 
       - name: Install Deno
         uses: denoland/setup-deno@v2
