@@ -1,6 +1,6 @@
 {
   "name": "Bun Example",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "type": "module",
   "description": "An example using Bun to write theme.json",
   "keywords": [
