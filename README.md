@@ -11,10 +11,10 @@ comments.
 
 ## Usage Example
 
-```typescript
+```ts
 import { config, settings, styles } from "@wp-dx/theme-config";
 
-async function writeJson() {
+async function creatThemeJson() {
   const themeJson = config.create(
     config.withVersion(2),
     config.withSchema("https://schemas.wp.org/wp/6.5/theme.json"),
@@ -32,11 +32,17 @@ async function writeJson() {
       }, true),
     )),
   );
+```
 
+### Deno
+
+```ts
+// Deno (assuming write permission to the current directory)
+async function writeThemeJsonDeno() {
   try {
     await Deno.writeTextFile(
       "theme.json",
-      JSON.stringify(themeJson, null, 2),
+      JSON.stringify(themeJson, null, 2),  // see above snippet for themeJson implementation
     );
     console.log("✓ theme.json updated");
   } catch (error) {
@@ -45,9 +51,74 @@ async function writeJson() {
 }
 
 if (import.meta.main) {
-  await writeJson();
+  await writeThemeJsonDeno();
 }
 ```
+
+### Node.js
+
+```js
+const { createThemeJson } = require('./src/theme-generator'); 
+const fs = require('fs');
+
+function writeThemeJsonNode() {
+  const themeJson = createThemeJson();
+  try {
+    fs.writeFileSync("theme.json", JSON.stringify(themeJson, null, 2));  // see above snippet for themeJson implementation
+    console.log("✓ theme.json updated");
+  } catch (error) {
+    console.error("Failed to write theme.json:", error);
+  }
+}
+
+writeThemeJsonNode();
+```
+
+### Bun
+
+```ts
+import { createThemeJson } from './src/theme-generator'; 
+
+async function writeThemeJsonBun() {
+  const themeJson = createThemeJson();
+  try {
+    await Bun.file("theme.json").write(JSON.stringify(themeJson, null, 2)); // see above snippet for themeJson implementation
+    console.log("✓ theme.json updated");
+  } catch (error) {
+    console.error("Failed to write theme.json:", error);
+  }
+}
+
+await writeThemeJsonBun();
+```
+
+## Installation
+
+To install the library:
+
+```bash
+deno add jsr:@wp-dx/theme-config
+```
+
+```bash
+npm install @wp-dx/theme-config
+```
+
+## Project Examples
+
+The [`examples`](https://github.com/ge3224/wp-dx-theme-config/tree/main/examples)
+directory contains example projects demonstrating usage in different environments:
+
+- **basic.ts:** A basic usage example demonstrating theme configuration creation.
+- **bun:** A Bun project showcasing theme configuration usage with Bun-specific considerations.
+- **nodejs:** A Node.js project demonstrating theme configuration usage with
+Node.js-specific considerations.
+
+## Contributing
+
+Contributions to this project are welcome! Please see the
+[CONTRIBUTING.md](https://github.com/ge3224/wp-dx-theme-config/tree/main/CONTRIBUTING.md)
+file for details on how to submit pull requests and code contributions.
 
 ## Inspiration
 
