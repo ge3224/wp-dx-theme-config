@@ -1,6 +1,8 @@
 # Wrangle that hulking `theme.json` file with TypeScript
 
-![](https://img.shields.io/jsr/v/@wp-dx/theme-config)
+![GitHub License](https://img.shields.io/github/license/ge3224/wp-dx-theme-config)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ge3224/wp-dx-theme-config/publish.yml)
+[![JSR](https://jsr.io/badges/@wp-dx/theme-config)](https://jsr.io/@wp-dx/theme-config)
 
 Craft WordPress theme configurations using the full power of TypeScript: split configs, leverage functions, iterate over arrays, and even throw in some comments.
 
