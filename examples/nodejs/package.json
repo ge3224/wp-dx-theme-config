@@ -1,6 +1,6 @@
 {
   "name": "Node.js Example",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "description": "An example using Node.js to write theme.json",
   "keywords": [
