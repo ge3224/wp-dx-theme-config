@@ -6,7 +6,7 @@ comments.
 
 [![JSR](https://jsr.io/badges/@wp-dx/theme-config)](https://jsr.io/@wp-dx/theme-config)
 [![NPM Version](https://img.shields.io/npm/v/%40wp-dx%2Ftheme-config)](https://www.npmjs.com/package/@wp-dx/theme-config)
-[![GitHub License](https://img.shields.io/github/license/ge3224/wp-dx-theme-config)](https://github.com/ge3224/wp-dx-theme-config/tree/main/CONTRIBUTING.md)
+[![GitHub License](https://img.shields.io/github/license/ge3224/wp-dx-theme-config)](https://github.com/ge3224/wp-dx-theme-config/blob/main/LICENSE)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ge3224/wp-dx-theme-config/publish.yml)
 
 ## Usage Example
