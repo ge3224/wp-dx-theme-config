@@ -1,5 +1,7 @@
 # Wrangle that hulking `theme.json` file with TypeScript
 
+https://img.shields.io/jsr/v/@wp-dx/theme-config
+
 Craft WordPress theme configurations using the full power of TypeScript: split
 configs, leverage functions, iterate over arrays, and even throw in some
 comments. Use your tools and tame that unwieldy `theme.json` file.
