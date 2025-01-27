@@ -141,13 +141,79 @@ export function newThemeJson(
   return conf;
 }
 
+/**
+ * A utility object for creating and modifying ThemeJson objects.
+
+ * @interface ThemeJsonConfig
+ */
 export const config = {
+  /**
+   * Creates a new ThemeJson object with default values.
+   *
+   * @returns {ThemeJson} A new ThemeJson object.
+   */
   create: newThemeJson,
+
+  /**
+   * Adds custom templates to the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {CustomTemplatesConfig} customTemplates - The custom templates configuration.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withCustomTemplates: withConfigCustomTemplates,
+
+  /**
+   * Adds patterns to the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {PatternsConfig} patterns - The patterns configuration.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withPatterns: withConfigPatterns,
+
+  /**
+   * Sets the schema URL for the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {string} schema - The schema URL.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withSchema: withConfigSchema,
+
+  /**
+   * Sets the settings configuration for the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {SettingsConfig} settings - The settings configuration.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withSettings: withConfigSettings,
+
+  /**
+   * Sets the style definitions for the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {StylesConfig} styles - The style definitions.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withStyles: withConfigStyles,
+
+  /**
+   * Sets the template parts for the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {TemplatePartsConfig} templateParts - The template parts configuration.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withTemplateParts: withConfigTemplateParts,
+
+  /**
+   * Sets the version of the ThemeJson object.
+   *
+   * @param {ThemeJson} themeJson - The ThemeJson object to modify.
+   * @param {number} version - The version number.
+   * @returns {ThemeJson} The modified ThemeJson object.
+   */
   withVersion: withConfigVersion,
 };
