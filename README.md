@@ -1,4 +1,4 @@
-# Wrangle that out-of-control `theme.json` with TypeScript
+# Wrangle that hulking `theme.json` with TypeScript
 
 Craft WordPress theme configurations using the full power of TypeScript: split
 configs, leverage functions, iterate over arrays, and even throw in some
